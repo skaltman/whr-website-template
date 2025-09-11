@@ -1,2 +1,2 @@
-# whr-website-template
-Website template for https://github.com/posit-conf-2025/quarto-brand
+# whr-website
+Website starting point for https://github.com/posit-conf-2025/quarto-brand
