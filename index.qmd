@@ -1,10 +1,15 @@
 ---
-title: "whr-website"
+title: "Global Happiness"
 execute:
   echo: false
   warning: false
   message: false
 ---
+
+<!-- **USING R?** Remove the two Python chunks -->
+<!-- **Using Python?** Remoe the R chunks and un-comment the Python code --> 
+
+Data from: [World Happiness Report](https://www.worldhappiness.report/).
 
 ```{r}
 #| label: setup
@@ -55,3 +60,64 @@ global_trends |>
     axis.text = element_text(size = 10)
   ) 
 ```
+
+```{python}
+#| label: setup-py
+# import pandas as pd
+# import numpy as np
+# from plotnine import *
+# from quarto import theme_brand_plotnine
+# from brand_yml import Brand
+
+# whr = pd.read_csv("data/whr.csv")
+
+# brand = Brand.from_yaml("_brand.yml")
+
+# theme_whr = (
+#   theme_minimal()
+#   + theme_brand_plotnine("_brand.yml")
+#   + theme(
+#     plot_subtitle=element_text(size=12),
+#     plot_title=element_text(size=14)
+#   ) 
+# )
+```
+
+```{python}
+#| label: global-trends-py
+# global_trends = (
+#   whr
+#   .groupby('year')
+#   .agg({
+#     'ladder_score': ['mean', 'median', 'min', 'max', 'count']
+#   })
+#   .round(3)
+# )
+
+# global_trends.columns = ['mean_happiness', 'median_happiness', 'min_happiness', 'max_happiness', 'countries_count']
+# global_trends = global_trends.reset_index()
+
+# global_plot = (
+#   ggplot(global_trends, aes(x='year', y='mean_happiness')) 
+#   + geom_line(color = brand.color.palette['teal'], size=1.5)
+#   + geom_point(color = brand.color.palette['teal'], size=3)
+#   + scale_x_continuous(breaks=range(2011, 2025, 1)) 
+#   + scale_y_continuous(limits=(5.2, 5.7), breaks=np.arange(5.2, 5.8, 0.1))
+#   + theme_whr
+#   + theme(
+#     axis_title=element_text(size=12),
+#     axis_text=element_text(size=10)
+#   ) 
+#   + labs(
+#     title="Global Average Happiness Over Time (2011-2024)",
+#     subtitle="Average happiness has increased over the past 12 years",
+#     x="Year",
+#     y="Average Happiness Score"
+#   ) 
+# )
+
+# global_plot
+```
+
+
+
